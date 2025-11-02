@@ -28,9 +28,56 @@ namespace app {
 }
 #undef DO_TYPEDEF
 
+size_t ComputeChecksum(const std::string& filename)
+{
+	std::ifstream file(filename, std::ios::in | std::ios::binary);
+	if (!file.is_open())
+	{
+		LOG_ERROR("Failed to open: %s", filename.c_str());
+		return 0;
+	}
+
+	size_t sum = 0;
+	size_t word = 0;
+	while (file.read(reinterpret_cast<char*>(&word), sizeof(word))) {
+		sum += word;
+	}
+
+	if (file.gcount()) {
+		word &= (~0LLU >> ((sizeof(size_t) - file.gcount()) * 8));
+		sum += word;
+	}
+
+	return sum;
+}
+
+bool IsStaticCheckSumValid()
+{
+	char filepath[MAX_PATH];
+	if (!GetModuleFileName((HMODULE)il2cppi_get_base_address(), filepath, sizeof(filepath)))
+		return false;
+
+	auto checksum = ComputeChecksum(filepath);
+
+	if (checksum != 0xC18A812045CFBBAA)
+	{
+		LOG_WARNING("Seems like assembly checksum (0x%zX) don't match the expected version.", checksum);
+		return false;
+	}
+
+	return true;
+}
+
 // IL2CPP application initializer
 void init_il2cpp()
 {
+	if (!IsStaticCheckSumValid())
+	{
+		MessageBox(NULL, "Version mismatch.", "StellaSora-Tool", MB_OK);
+		ExitProcess(0);
+		return;
+	}
+
 	// Get base address of IL2CPP module
 	uintptr_t baseAddress = il2cppi_get_base_address();
 

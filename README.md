@@ -10,9 +10,12 @@
 </details>
 
 ## Features
+- Instant Break
 - God Mode
+- Multi Hit
 - No Cooldown
 - Unlimited Energy
+- Mob Vacuum
 
 ## Contributing
 1. Fork the repo (<https://github.com/TheReVeaLz/StellaSora-Tool/fork>).

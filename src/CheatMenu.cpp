@@ -26,7 +26,7 @@ namespace cheat
 		ImGui::SetNextWindowPos(ImVec2(io.DisplaySize.x * 0.5f, io.DisplaySize.y * 0.5f), ImGuiCond_Once, ImVec2(0.5f, 0.5f));
 		ImGui::SetNextWindowSize({ 375, 275 }, ImGuiCond_Once);
 		
-		if (!ImGui::Begin("StellaSora")) {
+		if (!ImGui::Begin("StellaSora-Tool")) {
 			return ImGui::End();
 		}
 

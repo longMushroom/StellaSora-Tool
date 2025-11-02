@@ -1,5 +1,6 @@
 #pragma once
 #include "framework.h"
+#include <list>
 
 namespace global {
 	namespace process {
@@ -14,6 +15,8 @@ namespace global {
 		inline LPCSTR ClassName;
 		inline LPCSTR Path;
 	}
+
+	inline std::list<void(*)()> AdventureModuleController_Update;
 }
 
 void Run(HMODULE* phModule);

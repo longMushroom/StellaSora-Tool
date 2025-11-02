@@ -99,6 +99,12 @@
     <ClInclude Include="src\appdata\il2cpp-api-functions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\cheat\MobVacuum.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cheat\InstantBreak.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\dllmain.cpp">
@@ -153,6 +159,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\appdata\helpers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cheat\MobVacuum.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cheat\InstantBreak.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

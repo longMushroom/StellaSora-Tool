@@ -6,7 +6,9 @@
 #include <string>
 #include <sstream>
 #include <iomanip>
+#include <iostream>
 #include <vector>
+#include <fstream>
 
 #include "il2cpp-metadata-version.h"
 

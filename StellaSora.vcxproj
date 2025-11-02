@@ -177,7 +177,9 @@
     <ClInclude Include="src\appdata\il2cpp-types.h" />
     <ClInclude Include="src\CheatMenu.h" />
     <ClInclude Include="src\cheat\HitEffect.h" />
+    <ClInclude Include="src\cheat\InstantBreak.h" />
     <ClInclude Include="src\cheat\misc\About.h" />
+    <ClInclude Include="src\cheat\MobVacuum.h" />
     <ClInclude Include="src\Feature.h" />
     <ClInclude Include="src\cheat\NoCD.h" />
     <ClInclude Include="src\framework.h" />
@@ -200,7 +202,9 @@
     <ClCompile Include="src\cheat\HitEffect.cpp" />
     <ClCompile Include="src\appdata\il2cpp-init.cpp" />
     <ClCompile Include="src\CheatMenu.cpp" />
+    <ClCompile Include="src\cheat\InstantBreak.cpp" />
     <ClCompile Include="src\cheat\misc\About.cpp" />
+    <ClCompile Include="src\cheat\MobVacuum.cpp" />
     <ClCompile Include="src\cheat\NoCD.cpp" />
     <ClCompile Include="src\dllmain.cpp" />
     <ClCompile Include="src\main.cpp" />
