@@ -59,7 +59,7 @@ namespace cheat::feature
 		NoCD& noCD = NoCD::GetInstance();
 		if (noCD.f_UnlimitedEnergy) {
 			int32_t energy = app::SkillInfo_get_totalEnergy(__this, nullptr);
-			value = app::FP_op_Implicit(energy, nullptr);
+			value = app::FP_op_Implicit_3(energy, nullptr);
 		}
 		return CALL_ORIGIN(SkillInfo_set_currentEnergy_Hook, __this, value, method);
 	}

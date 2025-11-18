@@ -39,7 +39,7 @@ namespace cheat::feature
 		StatModifier& statModifier = StatModifier::GetInstance();
 		if (statModifier.f_CritRate)
 		{
-			static int64_t desiredRet = global::process::qwGameAssembly + 0x11FD761;
+			static int64_t desiredRet = global::process::qwGameAssembly + 0x11FFC4B;
 			auto retAddress = (int64_t)_ReturnAddress();
 
 			auto adventurePlayerController = GET_SINGLETON(AdventurePlayerController);

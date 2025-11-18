@@ -23,7 +23,7 @@ namespace cheat::feature
 
 	const FeatureGUIInfo& MobVacuum::GetGUIInfo() const
 	{
-		static FeatureGUIInfo info = { "", "World", false };
+		static FeatureGUIInfo info = { "Mob Vacuum", "World", true };
 		return info;
 	}
 
@@ -40,7 +40,7 @@ namespace cheat::feature
 		auto playerForward = app::TrueSyncTransform_get_Forward(actor->fields._tsTransform_k__BackingField, nullptr);
 
 		auto convertedScale = (app::FP)(scalar * (1LL << 32));
-		auto forwardScale = app::TSVector2_op_Multiply(playerForward, convertedScale, nullptr);
+		auto forwardScale = app::TSVector2_op_Multiply_1(playerForward, convertedScale, nullptr);
 		auto forwardPos = app::TSVector2_op_Addition(playerPos, forwardScale, nullptr);
 		return forwardPos;
 	}

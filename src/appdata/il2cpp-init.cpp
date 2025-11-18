@@ -59,7 +59,7 @@ bool IsStaticCheckSumValid()
 
 	auto checksum = ComputeChecksum(filepath);
 
-	if (checksum != 0xC18A812045CFBBAA)
+	if (checksum != 0x84D4EAA704705E72)
 	{
 		LOG_WARNING("Seems like assembly checksum (0x%zX) don't match the expected version.", checksum);
 		return false;
@@ -73,7 +73,7 @@ void init_il2cpp()
 {
 	if (!IsStaticCheckSumValid())
 	{
-		MessageBox(NULL, "Version mismatch.", "StellaSora-Tool", MB_OK);
+		MessageBox(NULL, "Version mismatch.", "StellaSora-Tool", MB_OK | MB_SYSTEMMODAL);
 		ExitProcess(0);
 		return;
 	}
