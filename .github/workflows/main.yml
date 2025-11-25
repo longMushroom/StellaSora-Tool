@@ -21,17 +21,18 @@ jobs:
     - name: Build Solution
       run: msbuild StellaSora-Tool.sln /p:Configuration=Release /p:Platform=x64
 
-    - name: List Files (调试)
-      # 关键修改：添加 shell: cmd，这样就不会报错了
+    - name: Find and Copy DLL (自动搜寻)
       shell: cmd
       run: |
-        echo "Looking for DLL files..."
+        echo "正在搜索所有生成的 DLL..."
         dir /s /b *.dll
+        
+        echo "正在把找到的 DLL 复制到最外层..."
+        for /r %%i in (*.dll) do copy "%%i" .
 
-    - name: Upload Artifact
+    - name: Upload Artifact (上传)
       uses: actions/upload-artifact@v4
       with:
         name: StellaSora-Cheat
-        path: |
-          **/Release/*.dll
-          !**/obj/**
+        # 只要是 DLL 即使是中间文件也全部打包，确保绝不漏掉
+        path: "*.dll"
