@@ -1,0 +1,41 @@
+name: Build DLL
+
+on:
+  workflow_dispatch: # 允许手动构建
+  push:
+    branches: [ "main" ] # 推送代码时自动构建
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code (下载源码)
+      uses: actions/checkout@v4
+      with:
+        # 关键修改：递归下载子模块。
+        # 这个项目依靠 vendor 文件夹里的库，不加这行代码会导致编译失败。
+        submodules: recursive 
+
+    - name: Setup MSBuild (安装构建工具)
+      uses: microsoft/setup-msbuild@v1.1
+
+    - name: Build Solution (开始构建)
+      # 强制使用 Release 模式和 x64 架构
+      run: msbuild StellaSora-Tool.sln /p:Configuration=Release /p:Platform=x64
+
+    - name: List Files (调试：列出生成的文件)
+      # 如果构建成功但找不到文件，这一步会帮我们在日志里定位文件去哪了
+      run: |
+        echo "Looking for DLL files..."
+        dir /s /b *.dll
+
+    - name: Upload Artifact (上传结果)
+      uses: actions/upload-artifact@v4
+      with:
+        name: StellaSora-Cheat
+        # 关键修改：使用“通配符”搜索。
+        # 无论它生成在 x64/Release 还是 Release 文件夹，都会被打包。
+        path: |
+          **/Release/*.dll
+          !**/obj/**
